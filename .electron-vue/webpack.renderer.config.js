@@ -182,7 +182,10 @@ if (process.env.NODE_ENV === 'production') {
   rendererConfig.devtool = ''
 
   rendererConfig.plugins.push(
-    new MinifyPlugin(),
+    new MinifyPlugin({ builtIns: false }, {
+      babel: require('@babel/core'),
+      minifyPreset: require('babel-preset-minify')
+    }),
     new CopyWebpackPlugin([
       {
         from: path.join(__dirname, '../static'),

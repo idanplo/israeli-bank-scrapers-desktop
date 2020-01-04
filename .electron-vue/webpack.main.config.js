@@ -73,7 +73,10 @@ if (process.env.NODE_ENV !== 'production') {
  */
 if (process.env.NODE_ENV === 'production') {
   mainConfig.plugins.push(
-    new MinifyPlugin(),
+    new MinifyPlugin({ builtIns: false }, {
+      babel: require('@babel/core'),
+      minifyPreset: require('babel-preset-minify')
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
     })
