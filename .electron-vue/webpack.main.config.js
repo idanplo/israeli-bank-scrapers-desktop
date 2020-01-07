@@ -73,7 +73,11 @@ if (process.env.NODE_ENV !== 'production') {
  */
 if (process.env.NODE_ENV === 'production') {
   mainConfig.plugins.push(
-    new MinifyPlugin({ builtIns: false }, {
+    new MinifyPlugin({
+      builtIns: false,
+      removeUndefined: false
+    },
+    {
       babel: require('@babel/core'),
       minifyPreset: require('babel-preset-minify')
     }),

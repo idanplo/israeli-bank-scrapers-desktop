@@ -112,7 +112,8 @@ let webConfig = {
       minify: {
         collapseWhitespace: true,
         removeAttributeQuotes: true,
-        removeComments: true
+        removeComments: true,
+        removeUndefined: false,
       },
       nodeModules: false
     }),
