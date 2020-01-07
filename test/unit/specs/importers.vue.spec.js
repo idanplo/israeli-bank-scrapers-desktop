@@ -1,8 +1,8 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import fakeStore from '../helpers/baseStore';
-import Importers from '../../../src/renderer/components/MainPage/Importers';
-import AddScraper from '../../../src/renderer/components/MainPage/Importers/AddScraper';
+import Importers from '@/components/MainPage/Importers';
+import AddScraper from '@/components/MainPage/Importers/AddScraper';
 
 const localVue = createLocalVue();
 
