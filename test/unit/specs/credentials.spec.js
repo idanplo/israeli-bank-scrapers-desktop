@@ -1,6 +1,6 @@
 import sinon from 'sinon';
-import * as keytar from '../../../src/renderer/modules/encryption/keytar';
-import { encryptObject, decryptObject } from '../../../src/renderer/modules/encryption/credentials';
+import * as keytar from '@/modules/encryption/keytar';
+import { encryptObject, decryptObject } from '@/modules/encryption/credentials';
 
 function isNotNullOrEmptyOrUndefined(value) {
   return value && value !== null && value !== '';
@@ -8,16 +8,22 @@ function isNotNullOrEmptyOrUndefined(value) {
 
 const fakeKeytarValut = {};
 const fakeSaveIntoAccount = async (account, password) => {
-  fakeSaveIntoAccount[account] = password;
+  fakeKeytarValut[account] = password;
 };
 const fakegetFromAccount = async (account) => fakeKeytarValut[account];
 
-sinon.stub(keytar, 'loadSALT').returns(Promise.resolve('AAAAAAA'));
-sinon.stub(keytar, 'saveSALT');
-sinon.stub(keytar, 'saveIntoAccount').callsFake(fakeSaveIntoAccount);
-sinon.stub(keytar, 'getFromAccount').callsFake(fakegetFromAccount);
-
 describe('credentials.js', () => {
+  beforeEach(() => {
+    sinon.stub(keytar, 'loadSALT').returns(Promise.resolve('AAAAAAA'));
+    sinon.stub(keytar, 'saveSALT');
+    sinon.stub(keytar, 'saveIntoAccount').callsFake(fakeSaveIntoAccount);
+    sinon.stub(keytar, 'getFromAccount').callsFake(fakegetFromAccount);
+  });
+
+  afterEach(() => {
+    sinon.restore();
+  });
+
   it('Should encrypt value of simple object', async () => {
     const original = { key: 'value' };
     const encrypted = await encryptObject(original);
