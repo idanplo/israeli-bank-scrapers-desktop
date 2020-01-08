@@ -35,7 +35,7 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: |
         sudo apt update
-        sudo apt install -y xvfb graphicsmagick libsecret-1-dev
+        sudo apt install -y xvfb graphicsmagick gnome-keyring
         npm install -g xvfb-maybe
     - name: npm install and test
       run: |
