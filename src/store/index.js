@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-// import { createPersistedState, createSharedMutations } from 'vuex-electron';
+import createPersistedState from 'vuex-persistedstate';
 
 import modules from './modules';
 
@@ -13,8 +13,7 @@ const store = new Vuex.Store({
   modules,
   plugins: [
     // location: AppData\Roaming\Electron\vuex.json
-    // createPersistedState(),
-    // createSharedMutations(),
+    createPersistedState(),
   ],
   strict: process.env.NODE_ENV !== 'production',
 });
