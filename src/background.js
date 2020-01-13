@@ -3,7 +3,7 @@ import { createProtocol, installVueDevtools } from 'vue-cli-plugin-electron-buil
 import logger from 'electron-log';
 import { scrape, SCRAPERS } from './service/scrapers.service';
 import { encryptProperty, decryptProperty } from "./service/encryption/credentials.service";
-import './store'; 
+// import './store'; 
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
